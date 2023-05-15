@@ -10,17 +10,17 @@ namespace GUSRekrutacja
 {
     public class ThematicAreas
     {
-        [JsonPropertyName("id")]
+        [JsonProperty("id")]
         public int ID { get; set; }
-        [JsonPropertyName("nazwa")]
+        [JsonProperty("nazwa")]
         public string Name { get; set; }
-        [JsonPropertyName("id-nadrzedny-element")]
+        [JsonProperty("id-nadrzedny-element")]
         public int IDSuperiorelement { get; set; }
-        [JsonPropertyName("id-poziom")]
+        [JsonProperty("id-poziom")]
         public int IDLevel { get; set; }
-        [JsonPropertyName("nazwa-poziom")]
+        [JsonProperty("nazwa-poziom")]
         public string NameLevel { get; set; }
-        [JsonPropertyName("czy-zmienne")]
-        public int Variables { get; set; }
+        [JsonProperty("czy-zmienne")]
+        public bool Variables { get; set; }
     }
 }
