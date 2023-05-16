@@ -29,31 +29,38 @@ namespace GUSRekrutacja
         {
             InitializeComponent();
 
-            string json = "{\"id\":1,\"nazwa\":\"Ceny\",\"id-nadrzedny-element\":727,\"id-poziom\":1,\"nazwa-poziom\":\"Dziedzina\",\"czy-zmienne\":false}";
+            InitAsync();
 
-            ThematicAreas thematicArea = JsonConvert.DeserializeObject<ThematicAreas>(json);
+            //Task.Run(async () =>
+            //{
+            //    const string URL = @"https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl";
 
-            Task.Run(async () =>
-            {
-                const string URL = @"https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl";
+            //    HttpClient client = new HttpClient();
+            //    client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
 
-                HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
+            //    string response = await client.GetStringAsync(URL);
 
-                string response = await client.GetStringAsync(URL);
+            //    var data = JsonConvert.DeserializeObject<ThematicAreas[]>(response);
 
-                var data = JsonConvert.DeserializeObject<ThematicAreas[]>(response);
+            //    Thread.Sleep(1000);
 
-                Thread.Sleep(1000);
-
-                Dispatcher.Invoke(() =>
-                {
-                    TestDataGrid.ItemsSource = data;
-                });
-            });
+            //    Dispatcher.Invoke(() =>
+            //    {
+            //        TestDataGrid.ItemsSource = data;
+            //    });
+            //});
         }
 
-        private static async Task GetDataFromApi()
+        private async void InitAsync()
+        {
+            //Task<ThematicAreas[]> task = GetDataFromApi();
+
+            ThematicAreas[] testArray = await GetDataFromApi();
+
+            TestDataGrid.ItemsSource = testArray;
+        }
+
+        private static async Task<ThematicAreas[]> GetDataFromApi()
         {
             const string URL = @"https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl";
             
@@ -62,13 +69,9 @@ namespace GUSRekrutacja
 
             string response = await client.GetStringAsync(URL);
 
-            var data = JsonConvert.DeserializeObject<ThematicAreas[]>(response);
+            return JsonConvert.DeserializeObject<ThematicAreas[]>(response);
 
         }
 
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //await GetDataFromApi();
-        }
     }
 }
