@@ -7,9 +7,9 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace GUSRekrutacja
+namespace GUSRekrutacja.Model
 {
-    public class ThematicAreas
+    public class ThematicArea
     {
         [JsonProperty("id")]
         public int ID { get; set; }
