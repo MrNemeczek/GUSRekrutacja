@@ -33,7 +33,25 @@ namespace GUSRekrutacja
             ThematicAreas[] testArray = await GetDataFromApi();
 
             DataList.ItemsSource = testArray;
+            //await GenerateDataGrid();
         }
+
+        //private async Task GenerateDataGrid()
+        //{
+        //    if (DataList.ItemsSource == null || DataList.Items.Count == 0)
+        //        return;
+
+        //    foreach (var property in DataList.Items[0].GetType().GetProperties())
+        //    {
+        //        var column = new GridViewColumn();
+        //        column.Header = property.Name;
+        //        column.DisplayMemberBinding = new Binding(property.Name);
+
+        //        MainGridView.Columns.Add(column);
+        //    }
+
+        //    //DataList.View = gridView;
+        //}
 
         private static async Task<ThematicAreas[]> GetDataFromApi()
         {

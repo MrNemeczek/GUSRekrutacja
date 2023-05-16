@@ -7,20 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <!--<DataGrid Name="TestDataGrid"
-                  AutoGenerateColumns="True"
-                  VirtualizingPanel.IsVirtualizing="True"
-                  VirtualizingPanel.VirtualizationMode="Standard"
-                  ScrollViewer.CanContentScroll="True">
-            
-        </DataGrid>-->
         <ListView 
             x:Name="DataList"
             VirtualizingStackPanel.IsVirtualizing="True"
             VirtualizingStackPanel.VirtualizationMode="Standard"
             ScrollViewer.CanContentScroll="True">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding NameLevel}" Value="Temat">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding NameLevel}" Value="Dziedzina">
+                            <Setter Property="Background" Value="Yellow"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding NameLevel}" Value="Zakres informacyjny">
+                            <Setter Property="Background" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
-                <GridView>
+                <GridView x:Name="MainGridView">
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
                     <GridViewColumn Header="Nazwa" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="ID nadrzędnego elementu" DisplayMemberBinding="{Binding IDSuperiorElement}"/>
