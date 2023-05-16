@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -30,12 +31,12 @@ namespace GUSRekrutacja.Views
         }
         private async void InitAsync()
         {
-            List<ThematicArea> testList = await GetDataFromApi();
+            ObservableCollection<ThematicArea> ThematicAreaList = await GetDataFromApi();
 
-            TestDataGrid.ItemsSource = testList;
+            TestDataGrid.ItemsSource = ThematicAreaList;
         }
 
-        private static async Task<List<ThematicArea>> GetDataFromApi()
+        private static async Task<ObservableCollection<ThematicArea>> GetDataFromApi()
         {
             const string URL = @"https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl";
 
@@ -44,7 +45,7 @@ namespace GUSRekrutacja.Views
 
             string response = await client.GetStringAsync(URL);
 
-            return JsonConvert.DeserializeObject<List<ThematicArea>>(response);
+            return JsonConvert.DeserializeObject<ObservableCollection<ThematicArea>>(response);
         }
     }
 }
