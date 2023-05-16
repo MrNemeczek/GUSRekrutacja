@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -15,7 +16,7 @@ namespace GUSRekrutacja
         [JsonProperty("nazwa")]
         public string Name { get; set; }
         [JsonProperty("id-nadrzedny-element")]
-        public int IDSuperiorelement { get; set; }
+        public int IDSuperiorElement { get; set; }
         [JsonProperty("id-poziom")]
         public int IDLevel { get; set; }
         [JsonProperty("nazwa-poziom")]

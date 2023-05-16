@@ -7,8 +7,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="TestDataGrid" AutoGenerateColumns="True">
+        <!--<DataGrid Name="TestDataGrid"
+                  AutoGenerateColumns="True"
+                  VirtualizingPanel.IsVirtualizing="True"
+                  VirtualizingPanel.VirtualizationMode="Standard"
+                  ScrollViewer.CanContentScroll="True">
             
-        </DataGrid>
+        </DataGrid>-->
+        <ListView 
+            x:Name="DataList"
+            VirtualizingStackPanel.IsVirtualizing="True"
+            VirtualizingStackPanel.VirtualizationMode="Standard"
+            ScrollViewer.CanContentScroll="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Nazwa" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="ID nadrzędnego elementu" DisplayMemberBinding="{Binding IDSuperiorElement}"/>
+                    <GridViewColumn Header="ID poziomu" DisplayMemberBinding="{Binding IDLevel}"/>
+                    <GridViewColumn Header="Nazwa poziomu" DisplayMemberBinding="{Binding NameLevel}"/>
+                    <GridViewColumn Header="Czy zmienne" DisplayMemberBinding="{Binding Variables}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
     </Grid>
 </Window>
